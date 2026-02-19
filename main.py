@@ -1,4 +1,6 @@
 import pandas as pd
+from datetime import datetime
+import os
 
 def main():
     # 1. Cargar datos
@@ -13,10 +15,17 @@ def main():
         revenue_total=("revenue", "sum")
     ).reset_index()
 
-    # 3. Guardar resultado para Power BI
-    resumen.to_csv("output/resumen_experimento_pricing.csv", index=False)
+    # 3. Crear carpeta output si no existe
+    os.makedirs("output", exist_ok=True)
 
-    print("Análisis ejecutado correctamente. Archivo generado.")
+    # 4. Generar nombre con fecha
+    fecha = datetime.today().strftime("%Y-%m-%d")
+    output_path = f"output/resumen_experimento_pricing_{fecha}.csv"
+
+    # 5. Guardar resultado
+    resumen.to_csv(output_path, index=False)
+
+    print(f"Análisis ejecutado correctamente. Archivo generado: {output_path}")
 
 if __name__ == "__main__":
     main()
