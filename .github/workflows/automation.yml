@@ -1,0 +1,25 @@
+name: Automatizacion Analisis Python
+
+on:
+  schedule:
+    - cron: "0 8 1 * *"   # Se ejecuta el día 1 de cada mes a las 08:00
+  workflow_dispatch:      # Permite ejecución manual
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar script Python
+        run: python main.py
