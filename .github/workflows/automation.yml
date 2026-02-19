@@ -2,8 +2,8 @@ name: Automatizacion Analisis Python
 
 on:
   schedule:
-    - cron: "0 8 1 * *"   # Se ejecuta el día 1 de cada mes a las 08:00
-  workflow_dispatch:      # Permite ejecución manual
+    - cron: "0 8 1 * *"
+  workflow_dispatch:
 
 jobs:
   run-analysis:
@@ -23,10 +23,11 @@ jobs:
 
       - name: Ejecutar script Python
         run: python main.py
-        
+
       - name: Subir resultados del análisis
         uses: actions/upload-artifact@v4
         with:
           name: resumen-experimento-pricing
-          path: output/
+          path: output/*.csv
+
 
