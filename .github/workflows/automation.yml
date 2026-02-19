@@ -28,4 +28,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: resumen-experimento-pricing
-          path: output/resumen_experimento_pricing.csv
+          path: output/
+
