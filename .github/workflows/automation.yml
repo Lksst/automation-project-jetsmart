@@ -23,3 +23,9 @@ jobs:
 
       - name: Ejecutar script Python
         run: python main.py
+        
+      - name: Subir resultados del análisis
+        uses: actions/upload-artifact@v4
+        with:
+          name: resumen-experimento-pricing
+          path: output/resumen_experimento_pricing.csv
